@@ -10,10 +10,13 @@ public class RectangularMap implements WorldMap<Animal, Vector2d> {
     Map<Vector2d, Animal> animals = new HashMap<>();
     private final int width;
     private final int height;
+    private final Vector2d upperRight;
+    private final Vector2d lowerLeft = new Vector2d(0, 0);
 
     public RectangularMap(int width, int height) {
         this.width = width;
         this.height = height;
+        upperRight = new Vector2d(width, height);
     }
 
     @Override
@@ -47,13 +50,11 @@ public class RectangularMap implements WorldMap<Animal, Vector2d> {
     }
     @Override
     public String toString() {
-        Vector2d lowerLeft = new Vector2d(0, 0);
-        Vector2d upperRight = new Vector2d(width, height);
         return new MapVisualizer(this).draw(lowerLeft, upperRight);
     }
 
     @Override
     public boolean canMoveTo(Vector2d position) {
-        return position.follows(new Vector2d(0, 0)) && position.precedes(new Vector2d(width, height)) && !isOccupied(position);
+        return position.follows(lowerLeft) && position.precedes(upperRight) && !isOccupied(position);
     }
 }
