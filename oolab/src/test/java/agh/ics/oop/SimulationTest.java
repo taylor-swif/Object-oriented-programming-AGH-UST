@@ -1,8 +1,6 @@
 package agh.ics.oop;
 
-import agh.ics.oop.model.Animal;
-import agh.ics.oop.model.MoveDirection;
-import agh.ics.oop.model.Vector2d;
+import agh.ics.oop.model.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -11,33 +9,37 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SimulationTest {
     @Test
-    public void testSimulationWithValidData() {
+    public void testSimulationWithValidData1() {
+        WorldMap<Animal, Vector2d> worldMap = new RectangularMap(4, 4);
         List<Vector2d> initialPositions = List.of(new Vector2d(2, 2), new Vector2d(2, 3));
-        List<MoveDirection> moves = List.of(MoveDirection.FORWARD, MoveDirection.RIGHT, MoveDirection.BACKWARD, MoveDirection.LEFT);
+        List<MoveDirection> moves = List.of(MoveDirection.FORWARD, MoveDirection.RIGHT, MoveDirection.BACKWARD, MoveDirection.FORWARD);
 
-        Simulation simulation = new Simulation(initialPositions, moves);
+        Simulation simulation = new Simulation(initialPositions, moves, worldMap);
         simulation.run();
 
         List<Animal> animals = simulation.getAnimals();
         assertEquals(2, animals.size());
 
-        assertEquals("Position: (2,2), Orientation: Północ", animals.get(0).toString());
-        assertEquals("Position: (2,3), Orientation: Północ", animals.get(1).toString());
+        assertEquals("(2,1)", animals.get(0).getPosition().toString());
+        assertEquals("N", animals.get(0).getOrientation().toString());
+
+        assertEquals("(3,3)", animals.get(1).getPosition().toString());
+        assertEquals("E", animals.get(1).getOrientation().toString());
     }
 
     @Test
     public void testSimulationWithInvalidData() {
+        WorldMap<Animal, Vector2d> worldMap = new RectangularMap(4, 4);
         List<Vector2d> initialPositions = List.of(new Vector2d(2, 2), new Vector2d(2, 2));
         List<MoveDirection> moves = List.of(MoveDirection.RIGHT, MoveDirection.LEFT);
 
-        Simulation simulation = new Simulation(initialPositions, moves);
+        Simulation simulation = new Simulation(initialPositions, moves, worldMap);
         simulation.run();
 
         List<Animal> animals = simulation.getAnimals();
-        assertEquals(2, animals.size());
+        assertEquals(1, animals.size());
 
-        assertEquals("Position: (2,2), Orientation: Wschód", animals.get(0).toString());
-        assertEquals("Position: (2,2), Orientation: Zachód", animals.get(1).toString());
+        assertEquals("(2,2)", animals.get(0).getPosition().toString());
+        assertEquals("N", animals.get(0).getOrientation().toString());
     }
-
 }

@@ -3,27 +3,22 @@ package agh.ics.oop;
 import agh.ics.oop.model.Animal;
 import agh.ics.oop.model.MoveDirection;
 import agh.ics.oop.model.Vector2d;
+import agh.ics.oop.model.WorldMap;
+import agh.ics.oop.model.RectangularMap;
 
 import java.util.List;
 
 public class World {
     public static void main(String[] args) {
-        // Press Opt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
         System.out.println("Start");
 
-        List<MoveDirection> moves = OptionsParser.parse(args);
-        run(moves);
-
-        System.out.println("Stop");
-
-        Animal tadek = new Animal(new Vector2d(1, 20));
-        System.out.println(tadek);
-
+        WorldMap<Animal, Vector2d> worldMap = new RectangularMap(6, 6);
         List<MoveDirection> directions = OptionsParser.parse(args);
         List<Vector2d> positions = List.of(new Vector2d(2,2), new Vector2d(3,4));
-        Simulation simulation = new Simulation(positions, directions);
+        Simulation simulation = new Simulation(positions, directions, worldMap);
         simulation.run();
+
+        System.out.println("Stop");
     }
     public static void run(List<MoveDirection> args) {
 
