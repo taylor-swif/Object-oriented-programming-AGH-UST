@@ -1,6 +1,6 @@
 package agh.ics.oop.model;
 
-public class Animal {
+public class Animal extends AbstractWorldElement {
     private MapDirection orientation;
 
 
@@ -8,23 +8,14 @@ public class Animal {
         this.position = position;
     }
 
-    private Vector2d position;
-
     public MapDirection getOrientation() {
         return orientation;
     }
-    public Vector2d getPosition() {
-        return position;
-    }
-
-    public Animal() {
-        this.orientation = MapDirection.NORTH;
-        this.position = new Vector2d(2, 2);
-    }
 
     public Animal(Vector2d newPosition) {
+        super(newPosition);
         this.orientation = MapDirection.NORTH;
-        this.position = newPosition;
+
     }
 
     @Override
