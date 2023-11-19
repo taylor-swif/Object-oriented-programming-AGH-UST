@@ -1,38 +1,34 @@
 package agh.ics.oop.model;
 
 
+import agh.ics.oop.model.util.MapVisualizer;
+
 import java.util.*;
 
 public class GrassField extends AbstractWorldMap {
 
+    final int maxWidth;
+    final int maxHeight;
+
     public GrassField(int grassCount) {
+        this.maxWidth = (int) Math.sqrt(grassCount*10);
+        this.maxHeight = (int) Math.sqrt(grassCount*10);
         generateGrass(grassCount);
     }
 
     private void generateGrass(int grassCount) {
+        RandomPositionGenerator randomPositionGenerator = new RandomPositionGenerator(maxWidth, maxHeight, grassCount);
 
-        Random rand = new Random();
-        int grassGenerated = 0;
-
-        while (grassGenerated < grassCount){
-            int x = rand.nextInt((int) Math.sqrt(grassCount*10));
-            int y = rand.nextInt((int) Math.sqrt(grassCount*10));
-
-            Vector2d grassPosition = new Vector2d(x, y);
+        for(Vector2d grassPosition : randomPositionGenerator) {
             Grass grass = new Grass(grassPosition);
-
-            if (placeGrass(grass)){
-                grassGenerated += 1;
-            }
+            placeGrass(grass);
         }
     }
 
-    public boolean placeGrass(Grass grass) {
+    public void placeGrass(Grass grass) {
         if (canMoveTo(grass.getPosition())) {
             grasses.put(grass.getPosition(), grass);
-            return true;
         }
-        return false;
     }
     public boolean canMoveTo(Vector2d position) {
         return position.follows(lowerLeft) && !isOccupiedByAnimal(position);

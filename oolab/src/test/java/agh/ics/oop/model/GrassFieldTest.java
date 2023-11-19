@@ -33,7 +33,7 @@ class GrassFieldTest {
 
     @Test
     public void canMoveToTest() {
-        GrassField map = new GrassField(100);
+        GrassField map = new GrassField(10);
         Animal animal = new Animal(new Vector2d(4, 4));
         map.place(animal);
 
