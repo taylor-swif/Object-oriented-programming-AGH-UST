@@ -4,6 +4,7 @@ public class Grass extends AbstractWorldElement {
     public Grass(Vector2d position) {
         super(position);
     }
+    boolean movable = false;
 
     @Override
     public String toString() {

@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SimulationTest {
     @Test
-    public void testSimulationWithValidData1() {
+    public void testSimulationWithValidData1(){
         WorldMap<Animal, Vector2d> worldMap = new RectangularMap(4, 4);
         List<Vector2d> initialPositions = List.of(new Vector2d(2, 2), new Vector2d(2, 3));
         List<MoveDirection> moves = List.of(MoveDirection.FORWARD, MoveDirection.RIGHT, MoveDirection.BACKWARD, MoveDirection.FORWARD);
@@ -28,7 +28,7 @@ class SimulationTest {
     }
 
     @Test
-    public void testSimulationWithInvalidData() {
+    public void testSimulationWithInvalidData(){
         WorldMap<Animal, Vector2d> worldMap = new RectangularMap(4, 4);
         List<Vector2d> initialPositions = List.of(new Vector2d(2, 2), new Vector2d(2, 2));
         List<MoveDirection> moves = List.of(MoveDirection.RIGHT, MoveDirection.LEFT);

@@ -1,21 +1,18 @@
 package agh.ics.oop;
 
-import agh.ics.oop.model.Animal;
-import agh.ics.oop.model.MoveDirection;
-import agh.ics.oop.model.Vector2d;
-import agh.ics.oop.model.WorldMap;
+import agh.ics.oop.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Simulation {
 
-    private WorldMap<Animal, Vector2d> worldMap;
-    private List<Animal> animals;
-    public List<Animal> getAnimals() {
+    final private WorldMap<Animal, Vector2d> worldMap;
+    final private List<Animal> animals;
+    final public List<Animal> getAnimals() {
         return new ArrayList<>(animals);
     }
-    private List<MoveDirection> moves;
+    final private List<MoveDirection> moves;
 
 
     public Simulation(List<Vector2d> initialPositions, List<MoveDirection> moves, WorldMap<Animal, Vector2d> worldMap) {
@@ -25,8 +22,12 @@ public class Simulation {
 
         for (Vector2d initialPosition : initialPositions) {
             Animal animal = new Animal(initialPosition);
-            if (worldMap.place(animal)) {
+            try {
+                worldMap.place(animal);
                 animals.add(animal);
+
+            } catch (PositionAlreadyOccupiedException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -34,14 +35,11 @@ public class Simulation {
     public void run() {
         int numberOfAnimals = animals.size();
         int currentAnimalIndex = 0;
-
-        System.out.println(worldMap);
+        
 
         for (MoveDirection move : moves) {
             Animal currentAnimal = animals.get(currentAnimalIndex);
             worldMap.move(currentAnimal, move);
-
-            System.out.println(worldMap);
 
             currentAnimalIndex = (currentAnimalIndex + 1) % numberOfAnimals;
         }

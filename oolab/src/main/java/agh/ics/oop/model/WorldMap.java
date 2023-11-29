@@ -16,7 +16,7 @@ public interface WorldMap<T, P> extends MoveValidator {
      * @param animal The animal to place on the map.
      * @return True if the animal was placed. The animal cannot be placed if the move is not valid.
      */
-    boolean place(T animal);
+    void place(T animal) throws PositionAlreadyOccupiedException;
 
     /**
      * Moves an animal (if it is present on the map) according to specified direction.
@@ -43,4 +43,12 @@ public interface WorldMap<T, P> extends MoveValidator {
     WorldElement objectAt(P position);
 
     Map<P, WorldElement> getElements();
+
+    Boundary getCurrentBounds();
+
+    void subscribe(String eventType, MapChangeListener listener);
+
+    void unsubscribe(String eventType, MapChangeListener listener);
+
+    void notify(String eventType, String message);
 }
