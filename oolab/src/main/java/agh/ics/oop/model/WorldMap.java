@@ -51,4 +51,6 @@ public interface WorldMap<T, P> extends MoveValidator {
     void unsubscribe(String eventType, MapChangeListener listener);
 
     void notify(String eventType, String message);
+
+    int getId();
 }

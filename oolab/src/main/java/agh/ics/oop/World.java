@@ -8,11 +8,11 @@ public class World {
     public static void main(String[] args) {
         System.out.println("Start");
 
-        WorldMap<Animal, Vector2d> worldMap = new RectangularMap(4, 4);
+        WorldMap<Animal, Vector2d> worldMap = new RectangularMap(4, 4, 1);
 
         MapChangeListener drawer = new ConsoleMapDisplay();
 
-        worldMap.subscribe("move", drawer);
+        worldMap.subscribe("drawer", drawer);
 
         List<MoveDirection> directions = OptionsParser.parse(args);
         List<Vector2d> positions = List.of(new Vector2d(2,2), new Vector2d(3,4));

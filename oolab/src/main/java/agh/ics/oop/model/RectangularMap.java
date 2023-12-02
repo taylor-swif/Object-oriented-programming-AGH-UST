@@ -3,8 +3,9 @@ package agh.ics.oop.model;
 
 public class RectangularMap extends AbstractWorldMap {
 
-    public RectangularMap(int width, int height) {
-        eventManager("move");
+    public RectangularMap(int width, int height, int id) {
+        super(id);
+        eventManager("drawer");
         bounds = new Boundary(new Vector2d(0, 0), new Vector2d(width, height));
     }
 

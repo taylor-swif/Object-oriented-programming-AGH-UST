@@ -8,7 +8,7 @@ class GrassFieldTest {
 
     @Test
     public void placeSunnyTest() throws PositionAlreadyOccupiedException {
-        GrassField map = new GrassField(10);
+        GrassField map = new GrassField(10, 1);
         Animal animal1 = new Animal(new Vector2d(4, 4));
         Animal animal2 = new Animal(new Vector2d(2, 4));
         Animal animal3 = new Animal(new Vector2d(10, 41));
@@ -20,7 +20,7 @@ class GrassFieldTest {
 
     @Test
     public void placeCloudyTest() throws PositionAlreadyOccupiedException {
-        GrassField map = new GrassField(10);
+        GrassField map = new GrassField(10, 1);
         Animal animal1 = new Animal(new Vector2d(4, 4));
         Animal animal2 = new Animal(new Vector2d(2, 4));
         Animal animal3 = new Animal(new Vector2d(4, 4));
@@ -31,7 +31,7 @@ class GrassFieldTest {
 
     @Test
     public void isOccupiedTest() throws PositionAlreadyOccupiedException {
-        GrassField map = new GrassField(0);
+        GrassField map = new GrassField(0, 1);
         Animal animal = new Animal(new Vector2d(4, 4));
         map.place(animal);
 
@@ -41,7 +41,7 @@ class GrassFieldTest {
 
     @Test
     public void canMoveToTest() throws PositionAlreadyOccupiedException {
-        GrassField map = new GrassField(10);
+        GrassField map = new GrassField(10, 1);
         Animal animal = new Animal(new Vector2d(4, 4));
         map.place(animal);
 
@@ -52,7 +52,7 @@ class GrassFieldTest {
 
     @Test
     public void objectAtTest() throws PositionAlreadyOccupiedException {
-        GrassField map = new GrassField(0);
+        GrassField map = new GrassField(0, 1);
         Animal animal = new Animal(new Vector2d(4, 4));
         map.place(animal);
 
