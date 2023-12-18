@@ -7,22 +7,30 @@ import static org.junit.jupiter.api.Assertions.*;
 class GrassFieldTest {
 
     @Test
-    public void placeTest() {
+    public void placeSunnyTest() throws PositionAlreadyOccupiedException {
+        GrassField map = new GrassField(10);
+        Animal animal1 = new Animal(new Vector2d(4, 4));
+        Animal animal2 = new Animal(new Vector2d(2, 4));
+        Animal animal3 = new Animal(new Vector2d(10, 41));
+        map.place(animal1);
+        map.place(animal2);
+        map.place(animal3);
+        assertEquals(3, map.animals.size());
+    }
+
+    @Test
+    public void placeCloudyTest() throws PositionAlreadyOccupiedException {
         GrassField map = new GrassField(10);
         Animal animal1 = new Animal(new Vector2d(4, 4));
         Animal animal2 = new Animal(new Vector2d(2, 4));
         Animal animal3 = new Animal(new Vector2d(4, 4));
-        Animal animal4 = new Animal(new Vector2d(10, 41));
         map.place(animal1);
         map.place(animal2);
-        map.place(animal3);
-        map.place(animal4);
-
-        assertTrue(map.animals.size() == 3);
+        assertThrows(PositionAlreadyOccupiedException.class, ()->map.place(animal3));
     }
 
     @Test
-    public void isOccupiedTest() {
+    public void isOccupiedTest() throws PositionAlreadyOccupiedException {
         GrassField map = new GrassField(0);
         Animal animal = new Animal(new Vector2d(4, 4));
         map.place(animal);
@@ -32,7 +40,7 @@ class GrassFieldTest {
     }
 
     @Test
-    public void canMoveToTest() {
+    public void canMoveToTest() throws PositionAlreadyOccupiedException {
         GrassField map = new GrassField(10);
         Animal animal = new Animal(new Vector2d(4, 4));
         map.place(animal);
@@ -43,7 +51,7 @@ class GrassFieldTest {
     }
 
     @Test
-    public void objectAtTest() {
+    public void objectAtTest() throws PositionAlreadyOccupiedException {
         GrassField map = new GrassField(0);
         Animal animal = new Animal(new Vector2d(4, 4));
         map.place(animal);
@@ -52,3 +60,4 @@ class GrassFieldTest {
         assertNull(map.objectAt(new Vector2d(2, 2)));
     }
 }
+

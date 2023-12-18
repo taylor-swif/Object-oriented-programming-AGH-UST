@@ -1,10 +1,5 @@
 package agh.ics.oop.model;
 
-
-import agh.ics.oop.model.util.MapVisualizer;
-
-import java.util.*;
-
 public class GrassField extends AbstractWorldMap {
 
     final int maxWidth;
@@ -13,6 +8,7 @@ public class GrassField extends AbstractWorldMap {
     public GrassField(int grassCount) {
         this.maxWidth = (int) Math.sqrt(grassCount*10);
         this.maxHeight = (int) Math.sqrt(grassCount*10);
+        this.bounds = new Boundary(new Vector2d(0, 0), new Vector2d(maxWidth, maxHeight));
         generateGrass(grassCount);
     }
 
@@ -28,9 +24,10 @@ public class GrassField extends AbstractWorldMap {
     public void placeGrass(Grass grass) {
         if (canMoveTo(grass.getPosition())) {
             grasses.put(grass.getPosition(), grass);
+            notify("move", "grass placed to position " + grass.getPosition());
         }
     }
     public boolean canMoveTo(Vector2d position) {
-        return position.follows(lowerLeft) && !isOccupiedByAnimal(position);
+        return position.follows(bounds.lowerLeft()) && !isOccupiedByAnimal(position);
     }
 }
