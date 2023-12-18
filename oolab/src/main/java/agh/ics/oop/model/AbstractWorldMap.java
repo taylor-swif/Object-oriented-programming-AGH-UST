@@ -12,6 +12,12 @@ public abstract class AbstractWorldMap implements WorldMap<Animal, Vector2d> {
     protected MapVisualizer map = new MapVisualizer(this);
     protected Boundary bounds;
 
+    private final int id;
+
+    protected AbstractWorldMap(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return map.draw(getCurrentBounds());
@@ -22,7 +28,7 @@ public abstract class AbstractWorldMap implements WorldMap<Animal, Vector2d> {
         if (canMoveTo(animal.getPosition())) {
             changeMapBounds(animal.getPosition());
             animals.put(animal.getPosition(), animal);
-            notify("move", "animal placed to position " + animal.getPosition());
+            notify("drawer", "animal placed to position " + animal.getPosition());
 
         } else throw new PositionAlreadyOccupiedException(animal.getPosition());
 
@@ -44,9 +50,9 @@ public abstract class AbstractWorldMap implements WorldMap<Animal, Vector2d> {
 
         if (oldPosition != animal.getPosition()){
             animals.put(animal.getPosition(), animals.remove(oldPosition));
-            notify("move", "animal moved to position " + animal.getPosition());
+            notify("drawer", "animal moved to position " + animal.getPosition());
         } else if (oldOrientation != animal.getOrientation()) {
-            notify("move", "animal changed orientation to " + animal.getOrientation());
+            notify("drawer", "animal changed orientation to " + animal.getOrientation());
         }
 
     }
@@ -98,5 +104,9 @@ public abstract class AbstractWorldMap implements WorldMap<Animal, Vector2d> {
         for (MapChangeListener listener : users) {
             listener.mapChanged(this, message);
         }
+    }
+
+    public int getId() {
+    	return id;
     }
 }
