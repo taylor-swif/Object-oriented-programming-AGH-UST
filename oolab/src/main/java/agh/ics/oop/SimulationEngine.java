@@ -58,25 +58,33 @@ public class SimulationEngine {
 
     public static void main(String[] args) {
 
+//        MapChangeListener drawer = new ConsoleMapDisplay();
+//
+//
+//        List<MoveDirection> moves = List.of(MoveDirection.FORWARD, MoveDirection.RIGHT, MoveDirection.BACKWARD, MoveDirection.LEFT);
+//
+//        List<Simulation> simulations = new ArrayList<>();
+//
+//        for (int i = 0; i < 10000; i++) {
+//            RectangularMap rectangularMap = new RectangularMap(5, 5, i*2);
+//            GrassField grassField = new GrassField(4, i*2 + 1);
+//
+//            rectangularMap.subscribe("drawer", drawer);
+//            grassField.subscribe("drawer", drawer);
+//
+//            simulations.add(new Simulation(List.of(new Vector2d(2, 2), new Vector2d(3, 4)), moves, rectangularMap));
+//            simulations.add(new Simulation(List.of(new Vector2d(2, 2), new Vector2d(3, 4)), moves, grassField));
+//        }
+//
+//        SimulationEngine engine = new SimulationEngine(simulations, 4);
+//        engine.runAsyncInThreadPool();
+//        engine.awaitSimulationsEnd();
+        RectangularMap rectangularMap = new RectangularMap(5, 5, 1);
+        List<MoveDirection> moves = List.of(MoveDirection.FORWARD, MoveDirection.RIGHT, MoveDirection.BACKWARD, MoveDirection.LEFT,MoveDirection.FORWARD,MoveDirection.FORWARD,MoveDirection.FORWARD,MoveDirection.FORWARD,MoveDirection.FORWARD);
         MapChangeListener drawer = new ConsoleMapDisplay();
-
-
-        List<MoveDirection> moves = List.of(MoveDirection.FORWARD, MoveDirection.RIGHT, MoveDirection.BACKWARD, MoveDirection.LEFT);
-
-        List<Simulation> simulations = new ArrayList<>();
-
-        for (int i = 0; i < 10000; i++) {
-            RectangularMap rectangularMap = new RectangularMap(5, 5, i*2);
-            GrassField grassField = new GrassField(4, i*2 + 1);
-
-            rectangularMap.subscribe("drawer", drawer);
-            grassField.subscribe("drawer", drawer);
-
-            simulations.add(new Simulation(List.of(new Vector2d(2, 2), new Vector2d(3, 4)), moves, rectangularMap));
-            simulations.add(new Simulation(List.of(new Vector2d(2, 2), new Vector2d(3, 4)), moves, grassField));
-        }
-
-        SimulationEngine engine = new SimulationEngine(simulations, 4);
+        rectangularMap.subscribe("drawer", drawer);
+        Simulation simulation = new Simulation(List.of(new Vector2d(2, 2), new Vector2d(3, 4)), moves, rectangularMap);
+        SimulationEngine engine = new SimulationEngine(new ArrayList<>(List.of(simulation)), 4);
         engine.runAsyncInThreadPool();
         engine.awaitSimulationsEnd();
 
