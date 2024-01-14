@@ -1,0 +1,22 @@
+.root {
+    -fx-alignment: center;
+    -fx-spacing: 10;
+}
+
+#moveTextField {
+    -fx-pref-width: 200;
+    -fx-max-width: 200;
+    -fx-alignment: top-center;
+}
+
+#infoLabel {
+    -fx-alignment: center;
+}
+
+#mapGrid {
+    -fx-alignment: center;
+}
+
+.button {
+    -fx-alignment: center;
+}

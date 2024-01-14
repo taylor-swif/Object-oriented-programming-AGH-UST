@@ -30,8 +30,7 @@ public class MapVisualizer {
      * indices of the map will have no more than two characters (including the
      * sign).
      *
-     * @param lowerLeft  The lower left corner of the region that is drawn.
-     * @param upperRight The upper right corner of the region that is drawn.
+     * @param bounds The lower left and upper right corner of the region that is drawn.
      * @return String representation of the selected region of the map.
      */
     public String draw(Boundary bounds) {
