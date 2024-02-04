@@ -12,7 +12,7 @@ public class WorldGUI {
 
         Application.launch(SimulationApp.class, args);
 
-        WorldMap<Animal, Vector2d> worldMap = new RectangularMap(4, 4, 1);
+        WorldMap worldMap = new RectangularMap(4, 4, 1);
 
         MapChangeListener drawer = new ConsoleMapDisplay();
 

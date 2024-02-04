@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Simulation implements Runnable{
 
-    final private WorldMap<Animal, Vector2d> worldMap;
+    final private WorldMap worldMap;
     final private List<Animal> animals;
     final public List<Animal> getAnimals() {
         return new ArrayList<>(animals);
@@ -15,7 +15,7 @@ public class Simulation implements Runnable{
     final private List<MoveDirection> moves;
 
 
-    public Simulation(List<Vector2d> initialPositions, List<MoveDirection> moves, WorldMap<Animal, Vector2d> worldMap) {
+    public Simulation(List<Vector2d> initialPositions, List<MoveDirection> moves, WorldMap worldMap) {
         this.moves = moves;
         this.animals = new ArrayList<>();
         this.worldMap = worldMap;
@@ -51,5 +51,4 @@ public class Simulation implements Runnable{
             currentAnimalIndex = (currentAnimalIndex + 1) % numberOfAnimals;
         }
     }
-
 }
