@@ -30,6 +30,6 @@ public class GrassField extends AbstractWorldMap {
         }
     }
     public boolean canMoveTo(Vector2d position) {
-        return position.follows(bounds.lowerLeft()) && !isOccupiedByAnimal(position);
+        return position.follows(bounds.lowerLeft()) && isOccupiedByAnimal(position);
     }
 }

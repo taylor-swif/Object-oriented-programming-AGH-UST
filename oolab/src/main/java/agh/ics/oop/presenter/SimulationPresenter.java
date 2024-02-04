@@ -16,13 +16,8 @@ import javafx.scene.layout.RowConstraints;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("rawtypes")
 public class SimulationPresenter implements MapChangeListener {
-    @FXML
-    private GridPane gridPane;
 
-    @FXML
-    private Label infoLabel;
 
     @FXML
     private TextField moveTextField;
@@ -64,8 +59,8 @@ public class SimulationPresenter implements MapChangeListener {
             clearGrid();
 
             Boundary bounds = worldMap.getCurrentBounds();
-            int columns = bounds.upperRight().getX() - bounds.lowerLeft().getX() + 1;
-            int rows = bounds.upperRight().getY() - bounds.lowerLeft().getY() + 1;
+            int columns = bounds.upperRight().x() - bounds.lowerLeft().x() + 1;
+            int rows = bounds.upperRight().y() - bounds.lowerLeft().y() + 1;
 
             for (int col = 0; col < columns + 1; col++) {
                 mapGrid.getColumnConstraints().add(new ColumnConstraints(50));
@@ -74,19 +69,19 @@ public class SimulationPresenter implements MapChangeListener {
             for (int row = 0; row < rows + 1; row++) {
                 mapGrid.getRowConstraints().add(new RowConstraints(50));
             }
-            for (int col = bounds.lowerLeft().getX(); col <= bounds.upperRight().getX(); col++) {
-                mapGrid.add(new Label(String.valueOf(col)), col - bounds.lowerLeft().getX() + 1, 0);
+            for (int col = bounds.lowerLeft().x(); col <= bounds.upperRight().x(); col++) {
+                mapGrid.add(new Label(String.valueOf(col)), col - bounds.lowerLeft().x() + 1, 0);
             }
-            for (int row = bounds.lowerLeft().getY(); row <= bounds.upperRight().getY(); row++) {
-                mapGrid.add(new Label(String.valueOf(row)), 0, rows - (row - bounds.lowerLeft().getY()));
+            for (int row = bounds.lowerLeft().y(); row <= bounds.upperRight().y(); row++) {
+                mapGrid.add(new Label(String.valueOf(row)), 0, rows - (row - bounds.lowerLeft().y()));
             }
             mapGrid.add(new Label("y\\x"), 0, 0);
 
-            for (int col = bounds.lowerLeft().getX(); col <= bounds.upperRight().getX(); col++) {
-                for (int row = bounds.lowerLeft().getY(); row <= bounds.upperRight().getY(); row++) {
+            for (int col = bounds.lowerLeft().x(); col <= bounds.upperRight().x(); col++) {
+                for (int row = bounds.lowerLeft().y(); row <= bounds.upperRight().y(); row++) {
                     Label label = new Label(drawObject(new Vector2d(col, row)));
                     GridPane.setHalignment(label, HPos.CENTER);
-                    mapGrid.add(label, col - bounds.lowerLeft().getX() + 1, rows - (row - bounds.lowerLeft().getY()));
+                    mapGrid.add(label, col - bounds.lowerLeft().x() + 1, rows - (row - bounds.lowerLeft().y()));
                 }
             }
         });

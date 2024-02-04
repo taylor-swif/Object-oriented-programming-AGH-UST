@@ -46,8 +46,8 @@ class RandomPositionGeneratorTest {
 
         RandomPositionGenerator randomPositionGenerator = new RandomPositionGenerator(maxWidth, maxHeight, grassCount);
         for (Vector2d position : randomPositionGenerator) {
-            assertTrue(position.getX() >= 0 && position.getX() < maxWidth);
-            assertTrue(position.getY() >= 0 && position.getY() < maxHeight);
+            assertTrue(position.x() >= 0 && position.x() < maxWidth);
+            assertTrue(position.y() >= 0 && position.y() < maxHeight);
         }
     }
 }

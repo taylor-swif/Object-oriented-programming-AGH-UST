@@ -2,22 +2,7 @@ package agh.ics.oop.model;
 
 import java.util.Objects;
 
-public class Vector2d {
-    private final int x;
-    private final int y;
-
-    public Vector2d(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
+public record Vector2d(int x, int y) {
 
     @Override
     public String toString() {
@@ -67,11 +52,11 @@ public class Vector2d {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Vector2d vector2d = (Vector2d) o;
-        return getX() == vector2d.getX() && getY() == vector2d.getY();
+        return x() == vector2d.x() && y() == vector2d.y();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getX(), getY());
+        return Objects.hash(x(), y());
     }
 }

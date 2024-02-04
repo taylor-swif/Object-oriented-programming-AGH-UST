@@ -6,16 +6,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-class RandomPositionGenerator implements Iterable<Vector2d> {
-    final int maxWidth;
-    final int maxHeight;
-    final int grassCount;
-
-    public RandomPositionGenerator(int maxWidth, int maxHeight, int grassCount) {
-        this.maxWidth = maxWidth;
-        this.maxHeight = maxHeight;
-        this.grassCount = grassCount;
-    }
+record RandomPositionGenerator(int maxWidth, int maxHeight, int grassCount) implements Iterable<Vector2d> {
 
     @Override
     public Iterator<Vector2d> iterator() {

@@ -25,29 +25,13 @@ public class SimulationEngine {
         }
     }
 
-    public void runSync() {
-        for (Simulation simulation : simulations) {
-            System.out.println("Running simulation for map ID: ");
-            simulation.run();
-            System.out.println("Simulation finished.\n");
-        }
-    }
-
-    public void runAsync() {
-        for (Simulation simulation : simulations) {
-            Thread thread = new Thread(simulation);
-            thread.start();
-        }
-    }
-
     public void awaitSimulationsEnd() {
         executorService.shutdown();
         try {
             if (!executorService.awaitTermination(10, TimeUnit.SECONDS)) {
                 executorService.shutdownNow();
                 if (!executorService.awaitTermination(10, TimeUnit.SECONDS)) {
-                    System.err.println("Pula wątków nie została zakończona.");
-                }
+                    System.err.println("Thread pool did not terminate.");                }
             }
         } catch (InterruptedException e) {
             executorService.shutdownNow();
@@ -79,6 +63,8 @@ public class SimulationEngine {
 //        SimulationEngine engine = new SimulationEngine(simulations, 4);
 //        engine.runAsyncInThreadPool();
 //        engine.awaitSimulationsEnd();
+
+
         RectangularMap rectangularMap = new RectangularMap(5, 5, 1);
         List<MoveDirection> moves = List.of(MoveDirection.FORWARD, MoveDirection.RIGHT, MoveDirection.BACKWARD, MoveDirection.LEFT,MoveDirection.FORWARD,MoveDirection.FORWARD,MoveDirection.FORWARD,MoveDirection.FORWARD,MoveDirection.FORWARD);
         MapChangeListener drawer = new ConsoleMapDisplay();
@@ -88,7 +74,6 @@ public class SimulationEngine {
         engine.runAsyncInThreadPool();
         engine.awaitSimulationsEnd();
 
-        System.out.println("System zakończył działanie.");
-    }
+        System.out.println("The system has finished running.");    }
 }
 

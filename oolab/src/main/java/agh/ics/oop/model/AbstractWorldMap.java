@@ -40,7 +40,7 @@ public abstract class AbstractWorldMap implements WorldMap {
     }
 
     public boolean isOccupiedByAnimal(Vector2d position) {
-        return animals.get(position) != null;
+        return animals.get(position) == null;
     }
 
     public void move(Animal animal, MoveDirection direction) {
@@ -59,9 +59,9 @@ public abstract class AbstractWorldMap implements WorldMap {
     @Override
     public WorldElement objectAt(Vector2d position) {
         if (animals.get(position) != null) {
-            return (WorldElement) animals.get(position);
+            return animals.get(position);
         } else if (grasses.get(position) != null) {
-            return (WorldElement) grasses.get(position);
+            return grasses.get(position);
         }
         else {
             return null;

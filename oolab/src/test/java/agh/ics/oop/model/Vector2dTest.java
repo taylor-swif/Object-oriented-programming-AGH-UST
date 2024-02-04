@@ -18,8 +18,8 @@ class Vector2dTest {
     void opposite() {
         Vector2d vector = new Vector2d(3, 5);
         Vector2d oppositeVector = vector.opposite();
-        assertEquals(-3, oppositeVector.getX());
-        assertEquals(-5, oppositeVector.getY());
+        assertEquals(-3, oppositeVector.x());
+        assertEquals(-5, oppositeVector.y());
     }
 
     @Test
@@ -49,8 +49,8 @@ class Vector2dTest {
 
         Vector2d result = v1.add(v2);
 
-        assertEquals(6, result.getX());
-        assertEquals(8, result.getY());
+        assertEquals(6, result.x());
+        assertEquals(8, result.y());
     }
 
     @Test
@@ -60,8 +60,8 @@ class Vector2dTest {
 
         Vector2d result = v1.subtract(v2);
 
-        assertEquals(2, result.getX());
-        assertEquals(2, result.getY());
+        assertEquals(2, result.x());
+        assertEquals(2, result.y());
     }
 
     @Test
@@ -71,8 +71,8 @@ class Vector2dTest {
 
         Vector2d result = v1.upperRight(v2);
 
-        assertEquals(4, result.getX());
-        assertEquals(5, result.getY());
+        assertEquals(4, result.x());
+        assertEquals(5, result.y());
     }
 
     @Test
@@ -82,8 +82,8 @@ class Vector2dTest {
 
         Vector2d result = v1.lowerLeft(v2);
 
-        assertEquals(2, result.getX());
-        assertEquals(3, result.getY());
+        assertEquals(2, result.x());
+        assertEquals(3, result.y());
     }
 
     @Test

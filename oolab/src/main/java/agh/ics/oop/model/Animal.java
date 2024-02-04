@@ -3,12 +3,6 @@ package agh.ics.oop.model;
 public class Animal extends AbstractWorldElement {
     private MapDirection orientation;
 
-    boolean movable = true;
-
-    public void setPosition(Vector2d position) {
-        this.position = position;
-    }
-
     public MapDirection getOrientation() {
         return orientation;
     }
