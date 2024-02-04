@@ -38,7 +38,7 @@ public class SimulationPresenter implements MapChangeListener {
         System.out.println(movesInput);
         List<MoveDirection> moves = OptionsParser.parse(movesInput.split(" "));
 //        List<MoveDirection> moves = List.of(MoveDirection.FORWARD, MoveDirection.RIGHT, MoveDirection.BACKWARD, MoveDirection.LEFT,MoveDirection.FORWARD,MoveDirection.FORWARD,MoveDirection.FORWARD,MoveDirection.FORWARD,MoveDirection.FORWARD);
-
+//        f r b l f f f f f f
         Simulation simulation = new Simulation(List.of(new Vector2d(2, 2), new Vector2d(0, 0)), moves, worldMap);
         SimulationEngine engine = new SimulationEngine(new ArrayList<>(List.of(simulation)), 4);
         engine.runAsyncInThreadPool();

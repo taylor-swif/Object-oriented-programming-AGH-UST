@@ -26,11 +26,25 @@ test {
 }
 
 application {
-  getMainClass().set('agh.ics.oop.World')
+    mainModule = 'agh.ics.oop'
+    getMainClass().set('agh.ics.oop.World')
 }
 
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(17))
     }
+}
+
+tasks.register('runWorld', JavaExec) {
+    mainModule = 'agh.ics.oop'
+    main = 'agh.ics.oop.World'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+
+tasks.register('runWorldGUI', JavaExec) {
+    mainModule = 'agh.ics.oop'
+    main = 'agh.ics.oop.WorldGUI'
+    classpath = sourceSets.main.runtimeClasspath
 }
